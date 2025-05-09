@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/L-book-server/l-book.iml" filepath="$PROJECT_DIR$/L-book-server/l-book.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/sdu_software.iml" filepath="$PROJECT_DIR$/.idea/sdu_software.iml" />
     </modules>
   </component>

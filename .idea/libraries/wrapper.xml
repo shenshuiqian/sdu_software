@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="wrapper">
+    <CLASSES />
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/L-book-server/.mvn/wrapper" />
+      <root url="file://$PROJECT_DIR$/L-book-server/src/main/java" />
+      <root url="file://$PROJECT_DIR$/L-book-server/src/test/java" />
+    </SOURCES>
+  </library>
+</component>
