@@ -1,7 +1,5 @@
 package cn.liantao.lbook.security;
 
-import cn.liantao.lbook.entity.LoginState;
-import cn.liantao.lbook.entity.SecurityUser;
 import cn.liantao.lbook.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;

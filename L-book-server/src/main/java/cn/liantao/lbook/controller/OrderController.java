@@ -23,11 +23,11 @@ public class OrderController {
     // 监听'/order/get' 返回相应用户的订单数据
     @RequestMapping(value = "/get", method = RequestMethod.POST)
     @ResponseBody
-    public List<List<Order>> getOrder(@RequestBody User user) {
+    public List<List<SalesInvoice>> getOrder(@RequestBody User user) {
         String account = user.getAccount();
-        List<Order> orders_raw = orderService.getOrder(account);
-        List<List<Order>> orders = new LinkedList<>();
-        List<Order> list = new LinkedList<>();
+        List<SalesInvoice> orders_raw = orderService.getOrder(account);
+        List<List<SalesInvoice>> orders = new LinkedList<>();
+        List<SalesInvoice> list = new LinkedList<>();
 
         if (orders_raw.size() > 0) {
             int id = orders_raw.get(0).getId();
@@ -51,9 +51,9 @@ public class OrderController {
     @RequestMapping(value = "/getall", method = RequestMethod.GET)
     @ResponseBody
     public OrderList getAllOrders() {
-        List<Order> orders_raw = orderService.getAllOrders();
-        List<List<Order>> orders = new LinkedList<>();
-        List<Order> list = new LinkedList<>();
+        List<SalesInvoice> orders_raw = orderService.getAllOrders();
+        List<List<SalesInvoice>> orders = new LinkedList<>();
+        List<SalesInvoice> list = new LinkedList<>();
         int id = orders_raw.get(0).getId().intValue();
         for (int i=0;i<orders_raw.size();i++){
             if (orders_raw.get(i).getId().intValue() != id){
@@ -75,7 +75,7 @@ public class OrderController {
     // 监听'/order/add' 添加订单，写入数据库
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
-    public List<Order> addOrder(@RequestBody Orders orders) {
+    public List<SalesInvoice> addOrder(@RequestBody Orders orders) {
 
         int size = orders.getOrders().size();
         for (int i=0;i<size;i++) {
@@ -86,7 +86,7 @@ public class OrderController {
 
         orderService.addOrder(orders.getOrders());
 
-        List<Order> result = orderService.getOrder(orders.getOrders().get(0).getAccount());
+        List<SalesInvoice> result = orderService.getOrder(orders.getOrders().get(0).getAccount());
 
         return result;
     }
@@ -96,11 +96,11 @@ public class OrderController {
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     @ResponseBody
     public OrderList searchOrders(@RequestParam("filter") String filter) {
-        List<Order> orders_raw = orderService.searchOrder(filter);
-        List<List<Order>> orders = new LinkedList<>();
+        List<SalesInvoice> orders_raw = orderService.searchOrder(filter);
+        List<List<SalesInvoice>> orders = new LinkedList<>();
 
         if (orders_raw.size() > 0) {
-            List<Order> list = new LinkedList<>();
+            List<SalesInvoice> list = new LinkedList<>();
             int id = orders_raw.get(0).getId().intValue();
             for (int i=0;i<orders_raw.size();i++){
                 if (orders_raw.get(i).getId().intValue() != id){

@@ -1,7 +1,6 @@
 package cn.liantao.lbook.service;
 
-import cn.liantao.lbook.entity.DateOrder;
-import cn.liantao.lbook.entity.Order;
+import cn.liantao.lbook.entity.SalesInvoice;
 import cn.liantao.lbook.mapper.OrderMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -20,7 +19,7 @@ public class OrderServiceImpl implements OrderService{
 
     // 添加订单
     @Override
-    public void addOrder(List<Order> orders) {
+    public void addOrder(List<SalesInvoice> orders) {
         int id;
         try {
             id = orderMapper.maxID() + 1;
@@ -41,23 +40,23 @@ public class OrderServiceImpl implements OrderService{
 
     // 获取所有订单
     @Override
-    public List<Order> getAllOrders() {
-        List<Order> orders = orderMapper.getAllOrders();
+    public List<SalesInvoice> getAllOrders() {
+        List<SalesInvoice> orders = orderMapper.getAllOrders();
         return orders;
     }
 
     // 获取指定用户订单
     @Override
-    public List<Order> getOrder(String account) {
-        List<Order> orders = orderMapper.getOrder(account);
+    public List<SalesInvoice> getOrder(String account) {
+        List<SalesInvoice> orders = orderMapper.getOrder(account);
         return orders;
     }
 
     // 搜索订单
     @Override
-    public List<Order> searchOrder(String text) {
+    public List<SalesInvoice> searchOrder(String text) {
         String filter = "%"+text+"%";
-        List<Order> orders= orderMapper.searchOrder(filter);
+        List<SalesInvoice> orders= orderMapper.searchOrder(filter);
         return orders;
     }
 

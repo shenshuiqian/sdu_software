@@ -1,6 +1,5 @@
 package cn.liantao.lbook.security;
 
-import cn.liantao.lbook.entity.SecurityUser;
 import cn.liantao.lbook.entity.User;
 import cn.liantao.lbook.service.UserService;
 import org.slf4j.Logger;

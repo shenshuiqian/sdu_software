@@ -7,9 +7,9 @@ import lombok.Data;
 public class User {
     private String account;
     private String password;
-    private String name;
-    private String code;
-    private Boolean allowed;
+    private String userName;
     private Boolean isManager;
     private String mail;
+    private Float money;
+
 }

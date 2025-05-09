@@ -1,8 +1,6 @@
 package cn.liantao.lbook.service;
 
-import cn.liantao.lbook.entity.LoginState;
 import cn.liantao.lbook.entity.User;
-import cn.liantao.lbook.entity.UserState;
 import cn.liantao.lbook.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;

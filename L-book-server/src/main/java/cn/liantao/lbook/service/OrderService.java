@@ -1,23 +1,22 @@
 package cn.liantao.lbook.service;
 
-import cn.liantao.lbook.entity.DateOrder;
-import cn.liantao.lbook.entity.Order;
+import cn.liantao.lbook.entity.SalesInvoice;
 
 import java.util.List;
 
 public interface OrderService {
 
     // 添加订单
-    void addOrder(List<Order> order);
+    void addOrder(List<SalesInvoice> order);
 
     // 获取所有订单
-    List<Order> getAllOrders();
+    List<SalesInvoice> getAllOrders();
 
     // 获取指定用户订单
-    List<Order> getOrder(String account);
+    List<SalesInvoice> getOrder(String account);
 
     // 搜索订单
-    List<Order> searchOrder(String filter);
+    List<SalesInvoice> searchOrder(String filter);
 
     // 筛选指定日期内指定用户的订单
     List<DateOrder> dateFilter(String beginDate, String endDate, String account);

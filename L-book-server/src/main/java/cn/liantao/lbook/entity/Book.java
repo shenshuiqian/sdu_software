@@ -5,15 +5,11 @@ import lombok.Data;
 //Book实体定义
 @Data
 public class Book {
-    private String name;
-    private String author;
-    private String ISBN;
-    private String newisbn;
-    private String outline;
+    private String name;//书的名称
+    private String author;//作者
+    private String ISBN;//ISBN号
     private Integer stock;
     private Float price;
-    private String cover;
-    private String press;
-    private String year;
+    private String version;
     private Integer pages;
 }

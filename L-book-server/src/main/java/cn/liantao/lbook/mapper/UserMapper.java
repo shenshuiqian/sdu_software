@@ -1,7 +1,6 @@
 package cn.liantao.lbook.mapper;
 
 import cn.liantao.lbook.entity.User;
-import cn.liantao.lbook.entity.UserState;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

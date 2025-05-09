@@ -1,8 +1,6 @@
 package cn.liantao.lbook.controller;
 
-import cn.liantao.lbook.entity.LoginState;
 import cn.liantao.lbook.entity.User;
-import cn.liantao.lbook.entity.UserState;
 import cn.liantao.lbook.service.UserService;
 import cn.liantao.lbook.util.Message;
 import org.springframework.beans.factory.annotation.Autowired;
