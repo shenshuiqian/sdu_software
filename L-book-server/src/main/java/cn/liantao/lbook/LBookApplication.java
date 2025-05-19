@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class LBookApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(LBookApplication.class, args);
 	}
 
