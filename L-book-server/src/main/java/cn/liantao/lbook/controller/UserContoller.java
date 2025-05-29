@@ -18,30 +18,29 @@ public class UserContoller {
     private UserService userService;
     @GetMapping(value = "/login")
     @CrossOrigin
-    public Map<String, Object> login(String account,String password){
-        Map<String, Object> response = new HashMap<>();
+    @ResponseBody
+    public LoginState login(String account,String password){
         LoginState loginState=new LoginState();
         User tempUser=userService.getUser(account);
         if(tempUser!=null){
-            Map<String,Boolean> t= new HashMap<>();;
             if(password.equals(tempUser.getPassword())){
-                response.put("code", 200);
-                t.put("isLogin",true);
+                loginState.setAccount(tempUser.getAccount());
+                loginState.setName(tempUser.getUsername());
+                loginState.setIsLogin(true);
+                loginState.setMessage("操作成功");
                 if(tempUser.getIsManager()){
-                    t.put("code",true);
+                    loginState.setCode(1);
                 }
-                else t.put("code",false);
-                // response.put("isLogin", 200);
-                response.put("message", "操作成功");
-                response.put("data", tempUser);
-                return response;
+                else loginState.setCode(0);
+                return loginState;
             }
-
+            loginState.setIsLogin(false);
+            loginState.setMessage("密码错误");
+            return loginState;
         }
-        response.put("code", 200);
-        response.put("message", "操作失败");
-        //response.put("data", t);
-        return response;
+        loginState.setMessage("未找到用户");
+        loginState.setIsLogin(false);
+        return loginState;
     }
     @GetMapping(value = "/register")
     public Map<String,Object> register(String account,String password,String username,Boolean isManager,String mail){
