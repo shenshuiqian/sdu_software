@@ -9,7 +9,7 @@ import Orders from '../pages/Orders/Orders.vue'
 import Statistics from '../pages/Statistics/Statistics.vue'
 import Users from '../pages/Users/Users.vue'
 import About from '../pages/About/About.vue'
-
+import Mys from '../pages/Mys/Mys.vue'
 
 Vue.use(VueRouter)
 
@@ -68,6 +68,13 @@ export default new VueRouter({
         {
             path: '/about',
             component: About,
+            meta: {
+                showNavDetail: true
+            }
+        },
+        {
+            path: '/mys',
+            component: Mys,
             meta: {
                 showNavDetail: true
             }

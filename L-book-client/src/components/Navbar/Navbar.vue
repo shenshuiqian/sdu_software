@@ -33,6 +33,12 @@
                     </a>
                 </li>
                 <li class="nav-item" v-show="isLogin">
+                    <a class="nav-link" :class="($route.path==='/mys')? 'active' : 'text-muted'" href="#/mys">
+                        <i class="iconfont icon-zhongxin"></i>
+                        个人中心
+                    </a>
+                </li>
+                <li class="nav-item" v-show="isLogin">
                     <a class="nav-link" :class="($route.path==='/orders')? 'active' : 'text-muted'" href="#/orders">
                         <i class="iconfont icon-dingdan"></i>
                         {{ isManager? '所有': '' }}订单

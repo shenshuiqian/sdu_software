@@ -250,7 +250,9 @@
                                 this.$message.error(data.message)
                                 return false
                             }
-                        }).catch(() => {
+                        }).catch((error) => {
+                            // eslint-disable-next-line no-console
+                            console.error('请求错误',error);
                             this.$message.error("登录失败，请检查网络连接")
                         })
                     } else {
