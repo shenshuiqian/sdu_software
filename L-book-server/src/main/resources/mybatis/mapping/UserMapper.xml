@@ -6,4 +6,8 @@
         FROM user
         WHERE account = #{account}
     </select>
+    <select id="addUser">
+        INSERT INTO user (account,password,username,isManager,mail,money)
+        VALUES (#{account},#{password},#{username},#{isManager},#{mail},#{money});
+    </select>
 </mapper>
