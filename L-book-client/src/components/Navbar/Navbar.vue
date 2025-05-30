@@ -103,7 +103,7 @@
             }),
         },
         methods: {
-            logout () {
+            /* logout () {
                 reqLogout().then((data) => {
                     this.$store.commit('Person/changeLogin')
                     if (this.isManager)
@@ -112,7 +112,22 @@
                     this.$router.push('/home')
                     this.$message.success(data)
                 })
+            } */
+            logout () {
+                reqLogout().then((data) => {
+                    console.log('logout success:', data)
+                    this.$store.commit('Person/changeLogin')
+                    if (this.isManager) {
+                         this.$store.commit('Person/changeManager')
+                     }
+                    this.$message.success(data)
+                     return this.$router.push('/home')
+                }).catch((error) => {
+                    console.error('Logout error:', error)
+                    this.$message.error('退出登录失败')
+                })
             }
+
         }
     }
 </script>
