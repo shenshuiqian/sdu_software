@@ -45,7 +45,7 @@ public class UserContoller {
     @GetMapping(value = "/signup")
     @CrossOrigin
     @ResponseBody
-    public String register(String account,String name,String password,String mail){
+    public String signup(String account,String name,String password,String mail){
         User temp=userService.getUser(account);
         String response="";
         if(temp!=null){
@@ -55,11 +55,12 @@ public class UserContoller {
             userService.addUser(account, password, name, false, mail, 0.0F);
             response="注册成功";
         }
-
-        //Map<String, Object> response = new HashMap<>();
-
-
         return response;
     }
-
+    @GetMapping(value = "/logout")
+    @CrossOrigin
+    @ResponseBody
+    public String logout(){
+        return "退出成功";
+    }
 }

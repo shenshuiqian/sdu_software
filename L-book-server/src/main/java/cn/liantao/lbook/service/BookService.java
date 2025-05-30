@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface BookService {
     // 获取所有书籍
-    //List<Book> getBooks();
+    List<Book> getBooks();
 
 //    // 搜索书籍
 //    List<Book> searchBooks(String text);

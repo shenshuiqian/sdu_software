@@ -10,11 +10,11 @@ import java.util.List;
 //@Repository
 @Mapper
 public interface BookMapper {
-    Book getBook(String ISBN);
+    Book getBook(String isbn);
     List<Book> getBooks();
 //    List<Book> searchBooks(String filter);
 //    int deleteBook(String ISBN);
-//    void addBook(Book book);
+    void addBook(Book book);
 //    int modifyBook(Book book);
 //    Book getDetail(String ISBN);
 }
