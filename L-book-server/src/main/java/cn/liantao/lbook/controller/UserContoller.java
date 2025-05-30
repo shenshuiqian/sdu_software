@@ -42,14 +42,24 @@ public class UserContoller {
         loginState.setIsLogin(false);
         return loginState;
     }
-    @GetMapping(value = "/register")
-    public Map<String,Object> register(String account,String password,String username,Boolean isManager,String mail){
-        userService.addUser(account, password, username, isManager, mail, 0.0F);
-        Map<String, Object> response = new HashMap<>();
-        response.put("code", 200);
-        Map<String,Boolean> t= new HashMap<>();;
-        response.put("message", "成功");
-        response.put("data", t);
+    @GetMapping(value = "/signup")
+    @CrossOrigin
+    @ResponseBody
+    public String register(String account,String name,String password,String mail){
+        User temp=userService.getUser(account);
+        String response="";
+        if(temp!=null){
+            response="手机号已被注册";
+        }
+        else{
+            userService.addUser(account, password, name, false, mail, 0.0F);
+            response="注册成功";
+        }
+
+        //Map<String, Object> response = new HashMap<>();
+
+
         return response;
     }
+
 }

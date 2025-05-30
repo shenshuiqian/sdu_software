@@ -6,4 +6,9 @@
         FROM book
         WHERE ISBN = #{ISBN}
     </select>
+<!--    <select id="getBooks" resultType="cn.liantao.lbook.entity.Book">-->
+<!--        SELECT *-->
+<!--        FROM book-->
+<!--        WHERE ISBN = #{ISBN}-->
+<!--    </select>-->
 </mapper>

@@ -11,7 +11,7 @@ import java.util.List;
 @Mapper
 public interface BookMapper {
     Book getBook(String ISBN);
-    //List<Book> getBooks();
+    List<Book> getBooks();
 //    List<Book> searchBooks(String filter);
 //    int deleteBook(String ISBN);
 //    void addBook(Book book);
