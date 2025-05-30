@@ -5,8 +5,8 @@
             <el-form-item>
                 <h1 class="h2 font-weight-normal mb-5">请先登录</h1>
             </el-form-item>
-            <el-form-item label="用户名" prop="account">
-                <el-input placeholder="请输入用户名" v-model="SignIn.account"></el-input>
+            <el-form-item label="手机号" prop="account">
+                <el-input placeholder="请输入手机号" v-model="SignIn.account"></el-input>
             </el-form-item>
             <el-form-item label="密码" prop="password">
                 <el-input placeholder="请输入密码" v-model="SignIn.password" show-password></el-input>
@@ -30,10 +30,10 @@
             </el-form-item>
             <el-form-item label="手机号" prop="account">
                 <el-row>
-                    <el-col :span="16"><el-input placeholder="请输入手机号" v-model="SignUp.account"></el-input></el-col>
+                    <el-col :span="24"><el-input placeholder="请输入手机号" v-model="SignUp.account"></el-input></el-col>
                     <!-- <el-col :span="8" v-show="!countDown"><el-button type="success" plain  @click="getCode(SignUp.account)">获取验证码</el-button></el-col> -->
-                    <el-col :span="8" v-show="!countDown"><el-button type="success" plain :disabled="!phoneCheck" @click="getCode(SignUp.account)">获取验证码</el-button></el-col>
-                    <el-col :span="8" v-show="countDown"><el-button type="success" plain disabled>{{count}}s后重发</el-button></el-col>
+                    <!-- <el-col :span="8" v-show="!countDown"><el-button type="success" plain :disabled="!phoneCheck" @click="getCode(SignUp.account)">获取验证码</el-button></el-col>
+                    <el-col :span="8" v-show="countDown"><el-button type="success" plain disabled>{{count}}s后重发</el-button></el-col> -->
                 </el-row>
             </el-form-item>
             <el-form-item label="用户名" prop="name">
@@ -48,9 +48,9 @@
             <el-form-item label="邮箱" prop="email">
                 <el-input placeholder="请输入邮箱" v-model="SignUp.email"></el-input>
             </el-form-item>
-            <el-form-item label="手机验证码" prop="code">
+            <!-- <el-form-item label="手机验证码" prop="code">
                 <el-input placeholder="请输入验证码" v-model="SignUp.code"></el-input>
-            </el-form-item>
+            </el-form-item> -->
             <el-form-item>
                 <div class="center">
                     <button class="btn btn-lg btn-primary btn-block" type="submit" @click.prevent="signup('SignUp')">
@@ -87,7 +87,7 @@
     import {mapState} from 'vuex'
     import {reqLogin,
         reqSignup,
-        reqPhoneCode,
+        //reqPhoneCode,
         reqSendMail} from '../../api'
 
     export default {
@@ -111,7 +111,7 @@
             }
             var Account = (rule, value, callback) => {
                 if (value === ''){
-                    callback(new Error('手机号不能为空'));
+                    callback(new Error('用户名不能为空'));
                 } else {
                     callback()
                 }
@@ -128,7 +128,7 @@
                     }
                 }
             }
-            var Code = (rule, value, callback) => {
+            /* var Code = (rule, value, callback) => {
                 if (value === ''){
                     callback(new Error('验证码不能为空'));
                 } else{
@@ -139,10 +139,10 @@
                         callback(new Error('请输入6位验证码'))
                     }
                 }
-            }
+            } */
             return {
-                count: 0,
-                countDown: false,
+                /* count: 0,
+                countDown: false, */
                 Login: 'SignIn',
                 SignUp: {
                     account: '',
@@ -150,7 +150,7 @@
                     password: '',
                     confirm_password: '',
                     email: '',
-                    code: '',
+                    // code: '',
                 },
                 SignIn: {
                     account: '',
@@ -175,9 +175,9 @@
                     email: [
                         {type: 'email', required: true, message: '请输入正确格式邮箱', trigger: 'change'}
                     ],
-                    code: [
+                    /* code: [
                         {required: true, validator: Code, trigger: 'change'}
-                    ],
+                    ], */
                 },
                 signin_rules: {
                     account: [
@@ -196,7 +196,7 @@
         },
         methods: {
             // 获取手机验证码
-            getCode(phoneNumber) {
+           /*  getCode(phoneNumber) {
                 reqPhoneCode(phoneNumber).then((data) => {
                     if (data == "发送成功") {
                         this.setTimer()
@@ -225,7 +225,7 @@
                         }
                     }, 1000)
                 }
-            },
+            }, */
             // 用户登录
             signin(formName) {
                 this.$refs[formName].validate((valid) => {
@@ -269,7 +269,7 @@
                             account: this.SignUp.account,
                             password: this.SignUp.password,
                             name: this.SignUp.name,
-                            code: this.SignUp.code,
+                            // code: this.SignUp.code,
                             mail: this.SignUp.email
                         }).then((data) => {
                             if (data == "注册成功") {
@@ -289,11 +289,14 @@
                                 this.$message.error("邮箱已被注册！")
                                 return false;
                             }
-
-                            if (data == "验证码错误") {
+                            if (data == "手机号已被注册") {
+                                this.$message.error("手机号已被注册！")
+                                return false;
+                            }
+                            /* if (data == "验证码错误") {
                                 this.$message.error("验证码错误！")
                                 return false
-                            }
+                            } */
                         }).catch(() => {
                             this.$message.error("注册失败，请检查网络连接")
                         })
