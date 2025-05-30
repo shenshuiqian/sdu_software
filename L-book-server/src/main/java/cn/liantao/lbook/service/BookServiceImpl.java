@@ -20,10 +20,14 @@ public class BookServiceImpl implements BookService {
 
     // 查找书籍
     @Override
-    public Book getBook(String ISBN){
-        Book book = bookMapper.getBook(ISBN);
+    public Book getBook(String isbn){
+        Book book = bookMapper.getBook(isbn);
         System.out.println(book.getISBN());
         return book;
+    }
+
+    public List<Book> getBooks(){
+        return bookMapper.getBooks();
     }
 
 

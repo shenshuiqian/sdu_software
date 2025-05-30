@@ -4,11 +4,15 @@
     <select id="getBook" resultType="cn.liantao.lbook.entity.Book">
         SELECT *
         FROM book
-        WHERE ISBN = #{ISBN}
+        WHERE isbn = #{isbn}
     </select>
-<!--    <select id="getBooks" resultType="cn.liantao.lbook.entity.Book">-->
-<!--        SELECT *-->
-<!--        FROM book-->
-<!--        WHERE ISBN = #{ISBN}-->
-<!--    </select>-->
+    <select id="getBooks" resultType="cn.liantao.lbook.entity.Book">
+        SELECT *
+        FROM book
+    </select>
+    <select id="addBook" parameterType="cn.liantao.lbook.entity.Book">
+        INSERT INTO books(name, author, stock, price, version, isbn, pages)
+        VALUES(#{name}, #{author}, #{stock}, #{price}, #{version}, #{isbn}, #{pages})
+
+    </select>
 </mapper>
