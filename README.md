@@ -2,10 +2,7 @@
 ### 后端
 1. Maven 
 2. SpringBoot 
-3. SpringActuator 
-4. SpringSecurity 
 5. MyBatis 
-6. Jackson
 
 
 
@@ -19,7 +16,7 @@
 
 ## 数据库
 - MySQL 
-- mongoDB
+- MyBatis
 
 
 ## 功能
