@@ -13,7 +13,7 @@ public class UserServiceImpl implements UserService{
     public User getUser(String account){
         return userMapper.getUser(account);
     }
-    public void addUser(String account,String password,String username,Boolean isManager,String mail,Float money){
-        userMapper.addUser(account,password,username,isManager,mail,money);
+    public void addUser(String account,String password,String username,Boolean isManager,String mail,Float money,Boolean allowed){
+        userMapper.addUser(account,password,username,isManager,mail,money,allowed);
     }
 }

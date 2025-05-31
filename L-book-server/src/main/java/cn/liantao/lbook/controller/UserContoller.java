@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
-
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api")
@@ -52,7 +52,7 @@ public class UserContoller {
             response="手机号已被注册";
         }
         else{
-            userService.addUser(account, password, name, false, mail, 0.0F);
+            userService.addUser(account, password, name, false, mail, 0.0F,true);
             response="注册成功";
         }
         return response;
@@ -73,4 +73,10 @@ public class UserContoller {
         }
         return "用户不存在";
     }
+//    @GetMapping(value = "/userstate")
+//    @CrossOrigin
+//    @ResponseBody
+//    public List<User> getuserstate(){
+//
+//    }
 }

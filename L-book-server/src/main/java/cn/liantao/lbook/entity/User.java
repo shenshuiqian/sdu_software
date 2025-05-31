@@ -11,5 +11,5 @@ public class User {
     private Boolean isManager;
     private String mail;
     private Float money;
-
+    private Boolean allowed;
 }
