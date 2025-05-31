@@ -10,4 +10,9 @@
         FROM salesInvoice
         WHERE account = #{account}
     </select>
+    <select id="getSalesInvoiceBetweenTime" resultType="cn.liantao.lbook.entity.SalesInvoice">
+        SELECT *
+        FROM salesInvoice
+        WHERE date BETWEEN #{time1} AND #{time2}
+    </select>
 </mapper>

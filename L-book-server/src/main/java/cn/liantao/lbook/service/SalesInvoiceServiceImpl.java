@@ -5,6 +5,7 @@ import cn.liantao.lbook.mapper.SaleMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Service
@@ -22,5 +23,10 @@ public class SalesInvoiceServiceImpl implements SalesInvoiceService{
     @Override
     public List<SalesInvoice> getAllSalesInvoice(){
         return saleMapper.getAllSalesInvoice();
+    }
+
+    @Override
+    public List<SalesInvoice> getSalesInvoiceBetweenTime(Timestamp time1, Timestamp time2){
+        return saleMapper.getSalesInvoiceBetweenTime(time1,time2);
     }
 }
