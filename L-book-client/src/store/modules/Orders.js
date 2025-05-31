@@ -51,6 +51,7 @@ const actions = {
                         count: item.count,
                         price: item.price,
                         total: item.price*item.count,
+                        
                         //isbn: item.isbn,
                         userName: item.user_name,
                         date: item.date
@@ -68,7 +69,7 @@ const actions = {
     searchOrder({commit}, filter) {
         reqSearchOrder(filter).then((data) => {
             const orders = []
-            console.log(data)
+            //console.log(data)
             for (let items of data.orders) {
                 const order = []
                 for (let item of items) {
