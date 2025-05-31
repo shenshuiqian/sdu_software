@@ -55,7 +55,7 @@
         methods: {
             changeAllow (account) {
                 reqChangeUser(account).then((data)=>{
-                    if (data.account) {
+                    if (data==account) {
                         this.$store.dispatch('Person/getUerState').then( () => {
                             this.$message.success("用户权限更改成功")
                         })

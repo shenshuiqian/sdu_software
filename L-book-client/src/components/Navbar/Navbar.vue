@@ -4,7 +4,7 @@
             <a class="navbar-brand" href="#">
                 <div class="row" :class="{ 'text-white':isManager}">
                    <i class="iconfont icon-shuji mt-1 mr-2 ml-2"></i>
-                    L-book在线书店
+                    SDU-book在线书店
                 </div>
             </a>
             <ul class="nav nav-fill nav-pills" v-show="$route.meta.showNavDetail">
@@ -32,12 +32,12 @@
                         用户管理
                     </a>
                 </li>
-                <li class="nav-item" v-show="isLogin">
+                <!-- <li class="nav-item" v-show="isLogin">
                     <a class="nav-link" :class="($route.path==='/mys')? 'active' : 'text-muted'" href="#/mys">
                         <i class="iconfont icon-zhongxin"></i>
                         个人中心
                     </a>
-                </li>
+                </li> -->
                 <li class="nav-item" v-show="isLogin">
                     <a class="nav-link" :class="($route.path==='/orders')? 'active' : 'text-muted'" href="#/orders">
                         <i class="iconfont icon-dingdan"></i>

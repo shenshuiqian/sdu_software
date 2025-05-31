@@ -7,7 +7,7 @@
                 <span>
                     Some advice? Welcome to issue.
                     <i class="iconfont icon-github"></i>
-                    <a href="https://blog.liantao.me">练涛</a>
+                    <a href="https://sdu.edu.cn">SDU</a>
                 </span>
             </div>
         </div>

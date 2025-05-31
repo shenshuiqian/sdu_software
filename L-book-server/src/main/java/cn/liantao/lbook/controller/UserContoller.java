@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
-
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api")
@@ -26,13 +26,20 @@ public class UserContoller {
             if(password.equals(tempUser.getPassword())){
                 loginState.setAccount(tempUser.getAccount());
                 loginState.setName(tempUser.getUsername());
-                loginState.setIsLogin(true);
-                loginState.setMessage("操作成功");
                 if(tempUser.getIsManager()){
                     loginState.setCode(1);
                 }
                 else loginState.setCode(0);
-                return loginState;
+                if(tempUser.getAllowed()){
+                    loginState.setIsLogin(true);
+                    loginState.setMessage("操作成功");
+                    return loginState;
+                }else{
+                    loginState.setIsLogin(false);
+                    loginState.setMessage("您已被封号，请等待解封...");
+                    return loginState;
+                }
+
             }
             loginState.setIsLogin(false);
             loginState.setMessage("密码错误");
@@ -52,7 +59,7 @@ public class UserContoller {
             response="手机号已被注册";
         }
         else{
-            userService.addUser(account, password, name, false, mail, 0.0F);
+            userService.addUser(account, password, name, false, mail, 0.0F,true);
             response="注册成功";
         }
         return response;
@@ -72,5 +79,18 @@ public class UserContoller {
             return user.getPassword();
         }
         return "用户不存在";
+    }
+    @GetMapping(value = "/userstates")
+    @CrossOrigin
+    @ResponseBody
+    public List<User> getuserstate(){
+        return userService.getAllUser();
+    }
+    @GetMapping(value = "/userchange")
+    @CrossOrigin
+    @ResponseBody
+    public String userchange(String account){
+        userService.changeState(account);
+        return account;
     }
 }

@@ -7,7 +7,14 @@
         WHERE account = #{account}
     </select>
     <select id="addUser">
-        INSERT INTO user (account,password,username,isManager,mail,money)
-        VALUES (#{account},#{password},#{username},#{isManager},#{mail},#{money});
+        INSERT INTO user (account,password,username,isManager,mail,money,allowed)
+        VALUES (#{account},#{password},#{username},#{isManager},#{mail},#{money},#{allowed});
+    </select>
+    <select id="getAllUser" resultType="cn.liantao.lbook.entity.User">
+        SELECT *
+        FROM user;
+    </select>
+    <select id="changeState">
+        UPDATE user SET allowed = NOT allowed WHERE account = #{account};
     </select>
 </mapper>

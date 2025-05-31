@@ -184,15 +184,15 @@
             },
 
             onSuccess (data) {
-                this.form.cover = data
+                this.form.cover = data.file.name
             },
 
-            onRemove () {
-                this.form.cover = null
+            onRemove (data) {
+                this.form.cover = data.file.name
             },
 
-            onError (err) {
-                this.$message.error(err)
+            onError (data) {
+                this.form.cover = data.file.name
             },
 
             httpRequest(data) {
@@ -200,7 +200,7 @@
                 let url = '/api/upload'
                 let formData = new FormData()
                 formData.append("file",file)
-
+                this.form.cover = file.name
                 axios({
                     method: 'POST',
                     url: url,
