@@ -2,11 +2,13 @@ package cn.liantao.lbook.controller;
 
 import cn.liantao.lbook.entity.Book;
 import cn.liantao.lbook.entity.SalesInvoice;
+import cn.liantao.lbook.entity.SalesInvoiceResponse;
 import cn.liantao.lbook.service.BookService;
 import cn.liantao.lbook.service.SalesInvoiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -15,18 +17,41 @@ public class SalesInvoiceController {
     @Autowired
     private SalesInvoiceService salesInvoiceService;
 
-    @GetMapping(value = "/getAllSales")
+    @Autowired
+    private BookService bookService;
+    @GetMapping(value = "/order/getall")
     @CrossOrigin
     @ResponseBody
-    public List<SalesInvoice> etAllSalesInvoice() {
-        List<SalesInvoice> salesInvoices=salesInvoiceService.getAllSalesInvoice();
-        return salesInvoices;
+    public SalesInvoiceResponse getAllSalesInvoice() {
+        //List<SalesInvoice> salesInvoices=salesInvoiceService.getAllSalesInvoice();
+        //return salesInvoices;
+        //return new SalesInvoiceResponse(salesInvoices);
+        List<SalesInvoice> salesInvoices = salesInvoiceService.getAllSalesInvoice();
+        List<List<Object>> wrapped = new ArrayList<>();
+
+        for (SalesInvoice invoice : salesInvoices) {
+            List<Object> inner = new ArrayList<>();
+            inner.add(invoice);
+            wrapped.add(inner);
+        }
+
+        return new SalesInvoiceResponse(wrapped);
     }
-    @GetMapping(value = "/getSalesFromAccount")
+    @GetMapping(value = "/order/search")
     @CrossOrigin
     @ResponseBody
-    public List<SalesInvoice> getSalesInvoiceFromAccount(String account) {
-        List<SalesInvoice> salesInvoices=salesInvoiceService.getSalesInvoiceFromAccount(account);
-        return salesInvoices;
+    public SalesInvoiceResponse getSalesInvoiceFromAccount(String account) {
+        //List<SalesInvoice> salesInvoices=salesInvoiceService.getSalesInvoiceFromAccount(account);
+        //return salesInvoices;
+        List<SalesInvoice> salesInvoices = salesInvoiceService.getSalesInvoiceFromAccount(account);
+        List<List<Object>> wrapped = new ArrayList<>();
+
+        for (SalesInvoice invoice : salesInvoices) {
+            List<Object> inner = new ArrayList<>();
+            inner.add(invoice);
+            wrapped.add(inner);
+        }
+
+        return new SalesInvoiceResponse(wrapped);
     }
 }
