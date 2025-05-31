@@ -11,8 +11,10 @@
         FROM book
     </select>
     <select id="addBook" parameterType="cn.liantao.lbook.entity.Book">
-        INSERT INTO books(name, author, stock, price, version, isbn, pages)
-        VALUES(#{name}, #{author}, #{stock}, #{price}, #{version}, #{isbn}, #{pages})
-
+        INSERT INTO book(name, author, stock, price, year, isbn, pages,outline)
+        VALUES(#{name}, #{author}, #{stock}, #{price}, #{year}, #{isbn}, #{pages},#{outline})
+    </select>
+    <select id="deleteBook" >
+        DELETE FROM book WHERE isbn = #{isbn}
     </select>
 </mapper>

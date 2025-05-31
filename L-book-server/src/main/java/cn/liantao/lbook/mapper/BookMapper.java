@@ -13,8 +13,6 @@ public interface BookMapper {
     Book getBook(String isbn);
     List<Book> getBooks();
 //    List<Book> searchBooks(String filter);
-//    int deleteBook(String ISBN);
+    void deleteBook(String isbn);
     void addBook(Book book);
-//    int modifyBook(Book book);
-//    Book getDetail(String ISBN);
 }
