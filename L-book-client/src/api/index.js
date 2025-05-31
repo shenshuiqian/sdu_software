@@ -56,7 +56,7 @@ export const reqAddOrder = (orders) => ajax(BASE_URL+'/order/add', {orders}, 'PO
 export const reqGetAllOrder = () => ajax(BASE_URL+'/order/getall')
 
 // 11、搜索书籍
-export const reqSearchBook = (filter) => ajax(BASE_URL+'/book/search', {filter})
+export const reqSearchBook = (filter) => ajax(BASE_URL+'/searchbooks', {filter})
 
 // 12、删除上传的书籍图片
 export const reqDeleteImg = (filename) => ajax(BASE_URL+'/delete', {filename})
