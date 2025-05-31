@@ -13,4 +13,5 @@ public class Book {
     private String isbn;//ISBN号
     private Integer pages;
     private String outline;
+    private String cover;
 }
