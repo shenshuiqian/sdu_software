@@ -21,7 +21,7 @@
                 </div>
             </el-form-item>
             <el-form-item>
-                <p class="mt-5 mb-3 text-muted">&copy; 2019 练涛</p>
+                <p class="mt-5 mb-3 text-muted">&copy; 2025 SDU</p>
             </el-form-item>
         </el-form>
         <el-form v-show="Login === 'SignUp'" :model="SignUp" :rules="signup_rules" label-width="7em" ref="SignUp">
