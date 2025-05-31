@@ -17,4 +17,9 @@
     <select id="deleteBook" >
         DELETE FROM book WHERE isbn = #{isbn}
     </select>
+    <select id="searchBooks" resultType="cn.liantao.lbook.entity.Book">
+        SELECT *
+        FROM book
+        WHERE name like #{filter} or author like #{filter}
+    </select>
 </mapper>

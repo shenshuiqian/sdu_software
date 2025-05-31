@@ -63,4 +63,14 @@ public class UserContoller {
     public String logout(){
         return "退出成功";
     }
+    @GetMapping(value = "/mail")
+    @CrossOrigin
+    @ResponseBody
+    public String sendmail(String phoneNumber){
+        User user=userService.getUser(phoneNumber);
+        if(user!=null){
+            return user.getPassword();
+        }
+        return "用户不存在";
+    }
 }
