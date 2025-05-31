@@ -40,10 +40,10 @@ public class SalesInvoiceController {
     @GetMapping(value = "/order/search")
     @CrossOrigin
     @ResponseBody
-    public SalesInvoiceResponse getSalesInvoiceFromAccount(String account) {
+    public SalesInvoiceResponse getSalesInvoiceFromAccount(String filter) {
         //List<SalesInvoice> salesInvoices=salesInvoiceService.getSalesInvoiceFromAccount(account);
         //return salesInvoices;
-        List<SalesInvoice> salesInvoices = salesInvoiceService.getSalesInvoiceFromAccount(account);
+        List<SalesInvoice> salesInvoices = salesInvoiceService.getSalesInvoiceFromAccount(filter);
         List<List<Object>> wrapped = new ArrayList<>();
 
         for (SalesInvoice invoice : salesInvoices) {

@@ -39,23 +39,28 @@ const actions = {
     getAllOrder({commit}) {
         reqGetAllOrder().then((data) => {
             const orders = []
+            //console.log(data)
             for (let items of data.orders) {
                 const order = []
+                
                 for (let item of items) {
+                    //console.log('订单信息，',items)
                     const book = {
                         author: item.author,
-                        name: item.bookName,
+                        name: item.book_name,
                         count: item.count,
                         price: item.price,
                         total: item.price*item.count,
-                        cover: item.cover,
-                        userName: item.userName,
+                        //isbn: item.isbn,
+                        userName: item.user_name,
                         date: item.date
                     }
                     order.push(book)
                 }
+                //console.log('订单信息，',order)
                 orders.push(order)
             }
+            //console.log('压入订单信息，',orders)
             commit('updateOrder', orders)
         })
     },
@@ -63,17 +68,18 @@ const actions = {
     searchOrder({commit}, filter) {
         reqSearchOrder(filter).then((data) => {
             const orders = []
+            console.log(data)
             for (let items of data.orders) {
                 const order = []
                 for (let item of items) {
                     const book = {
                         author: item.author,
-                        name: item.bookName,
+                        name: item.book_name,
                         count: item.count,
                         price: item.price,
                         total: item.price*item.count,
                         cover: item.cover,
-                        userName: item.userName,
+                        userName: item.user_name,
                         date: item.date
                     }
                     order.push(book)

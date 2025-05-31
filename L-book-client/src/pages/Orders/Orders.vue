@@ -9,6 +9,7 @@
         </div>
         <ul class="list-unstyled">
             <li v-for="(order, index) in orders" :key="index">
+                <!-- <pre>{{ order }}</pre>  -->
                 <Order :order="order"></Order>
             </li>
         </ul>
@@ -22,6 +23,7 @@
     export default {
         name: "Orders",
         mounted() {
+            
             if (this.$store.state.Person.isManager) {
                 this.$store.dispatch('Orders/getAllOrder')
             } else {
