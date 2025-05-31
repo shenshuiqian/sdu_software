@@ -17,4 +17,5 @@
     <select id="changeState">
         UPDATE user SET allowed = NOT allowed WHERE account = #{account};
     </select>
+
 </mapper>
