@@ -50,9 +50,10 @@
             <div v-if="!isManager">
                 <div class="mt-2">
                     <div class="row mb-3">
-                        <div class="imgbox col-md-4">
-                            <img v-lazy="cover" class="img-thumbnail">
-                        </div>
+                        <!-- <div class="imgbox col-md-4">
+                             <img v-lazy="cover" class="img-thumbnail">
+                        </div> -->
+                        <img src="https://th.bing.com/th/id/R.57e020c8d92712a62a4c116082c9a63f?rik=7DRekY39ZoAXVg&riu=http%3a%2f%2fp1.qhmsg.com%2ft01195794d2ac2cce41.jpg&ehk=TTy9JN2Vkn%2blmjb%2fw5pMHoh%2f48m9B3r0uOMHDhawiAw%3d&risl=&pid=ImgRaw&r=0" alt="" class="img-thumbnail" height="180px" width="140px">
                         <div class="col-md-8">
                             <div class="name">
                                 书名：{{detail.name}}

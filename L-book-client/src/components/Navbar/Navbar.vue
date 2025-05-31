@@ -122,7 +122,7 @@
                     this.$message.success(data)
                      return this.$router.push('/home')
                 }).catch(() => {
-                    this.$message.error('退出登录失败')
+                    // this.$message.error('退出登录失败')
                 })
             }
 
