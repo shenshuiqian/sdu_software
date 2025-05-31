@@ -12,7 +12,7 @@ import java.util.List;
 public interface BookMapper {
     Book getBook(String isbn);
     List<Book> getBooks();
-//    List<Book> searchBooks(String filter);
+    List<Book> searchBooks(String filter);
     void deleteBook(String isbn);
     void addBook(Book book);
 }

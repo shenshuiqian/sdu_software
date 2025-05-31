@@ -74,7 +74,7 @@
             </el-form-item>
             <el-form-item>
                 <div class="center">
-                    <button class="btn btn-lg btn-primary btn-block" type="submit" @click.prevent="sendMail('FindPassword')">发送邮件</button>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit" @click.prevent="sendMail('FindPassword')">查找密码</button>
                     <button class="btn btn-lg btn-block" type="button" @click="Login='SignIn'">返回登录界面</button>
                 </div>
             </el-form-item>
@@ -314,7 +314,7 @@
                             if (data == "用户不存在" || data == "发送失败") {
                                 this.$message.error(data);
                             } else {
-                                this.$message.success("成功发送邮件至"+data+", 请注意查收！")
+                                this.$message.success("您的密码是"+data+", 请注意查收！")
                             }
                         }).catch(() => {
                             this.$message.error("发送邮件失败")

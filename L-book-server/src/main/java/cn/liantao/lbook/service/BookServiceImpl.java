@@ -15,8 +15,6 @@ public class BookServiceImpl implements BookService {
 
     @Autowired
     private BookMapper bookMapper;
-    @Autowired
-    private BookService bookService;
     // 获取所有书籍
 
 
@@ -31,11 +29,17 @@ public class BookServiceImpl implements BookService {
     public List<Book> getBooks(){
         return bookMapper.getBooks();
     }
+    @Override
     public void addBook(Book book){
         bookMapper.addBook(book);
     }
+    @Override
     public void deleteBook(String isbn){
         bookMapper.deleteBook(isbn);
     }
 
+    @Override
+    public List<Book>searchBooks(String filter){
+        return bookMapper.searchBooks(filter);
+    }
 }
