@@ -12,7 +12,7 @@ export const reqSignup = ({account, name, password, mail}) => ajax(BASE_URL+'/si
 export const reqChangeUser = (account) => ajax(BASE_URL+'/user/change', {account}, 'GET')
 
 // 4、获取所有用户状态
-export const reqGetUserState = () => ajax(BASE_URL+'/user/states')
+export const reqGetUserState = () => ajax(BASE_URL+'/userstates')
 
 // 5、获取所有书籍
 export const reqGetAllBook = () => ajax(BASE_URL+'/getBooks')
