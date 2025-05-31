@@ -18,7 +18,7 @@
         name: "Home",
         data() {
             return {
-                imgUrl: '../../../public/images/sdunight.jpg'
+                imgUrl: '../../../public/images/sdu.jpg'
             }
         }
     }
@@ -28,7 +28,7 @@
     .title{
         font-family: Calibri;
         font: 72px bold;
-        color: #fff;
+        color: #000;
     }
 
     .subtitle{
@@ -41,12 +41,12 @@
         width: 60%;
         margin:0 auto;
         font-size: 20px;
-        color: #fff;
+        color: #000;
     }
 
     .home[lazy=loaded]{
         height: 800px;
-        background:url('../../../public/images/sdunight.jpg');
+        background:url('../../../public/images/sdu.jpg');
         background-size:cover;
         background-position: center;
     }
