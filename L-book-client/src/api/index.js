@@ -1,7 +1,8 @@
 import ajax from './ajax'
 
 
-const BASE_URL = 'http://192.168.125.158:1211/api'
+
+const BASE_URL = 'http://192.168.7.158:1211/api'
 
 // 1、登录
 export const reqLogin = ({account, password}) => ajax(BASE_URL+'/login', {account, password}, 'GET')
@@ -10,7 +11,7 @@ export const reqLogin = ({account, password}) => ajax(BASE_URL+'/login', {accoun
 export const reqSignup = ({account, name, password, mail}) => ajax(BASE_URL+'/signup', {account, name, password,mail}, 'GET')
 
 // 3、改变用户状态
-export const reqChangeUser = (account) => ajax(BASE_URL+'/user/change', {account}, 'GET')
+export const reqChangeUser = (account) => ajax(BASE_URL+'/userchange', {account}, 'GET')
 
 // 4、获取所有用户状态
 export const reqGetUserState = () => ajax(BASE_URL+'/userstates')

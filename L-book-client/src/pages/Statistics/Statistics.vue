@@ -125,13 +125,17 @@
                 // 获取日期筛选后的订单数据
                 reqDateOrderFilter(this.beginDate,this.endDate, this.$store.state.Person.account)
                     .then((data) => {
+                        
                         let date = new Date(this.beginDate)
+                        
                         for (let i=0;i<this.dateDiff;i++) {
                             let exist = false
                             for (let order of data) {
                                 let orderDate = new Date(order.date)
+                                
                                 if (orderDate.getDate() == date.getDate()) {
                                     exist = true
+                                    
                                     this.chartData.rows.push({
                                         '日期': (date.getMonth()+1).toString()+"/"+date.getDate(),
                                         '花费金额': order.amount,
@@ -153,6 +157,7 @@
                         }
                         // 获取日期筛选后的订单详细数据，用于制作时间线
                         reqDateDetailOrderFilter(this.beginDate,this.endDate, this.$store.state.Person.account).then((data) => {
+                            
                             let list = []
                             let accountList = []
                             let dateObject = {content: ''}
@@ -163,12 +168,12 @@
                                 for (let order of data) {
                                     if (order.account == accountObject.account) {
                                         if (order.date == dateObject.timestamp) {
-                                            dateObject.content += "购买《"+order.bookName+"》×"+order.count+"  花费"+Math.round(order.amount*100)/100+"元 \n"
+                                            dateObject.content += "购买《"+order.book_name+"》×"+order.count+"  花费"+Math.round(order.price*100)/100+"元 \n"
                                         } else {
                                             accountList.push(dateObject)
                                             dateObject = {content: ''}
                                             dateObject.timestamp = order.date
-                                            dateObject.content += "购买《"+order.bookName+"》×"+order.count+"  花费"+Math.round(order.amount*100)/100+"元 \n"
+                                            dateObject.content += "购买《"+order.book_name+"》×"+order.count+"  花费"+Math.round(order.price*100)/100+"元 \n"
                                         }
                                     } else {
                                         accountList.push(dateObject)
@@ -179,7 +184,7 @@
                                         accountList = []
                                         dateObject = {content: ''}
                                         dateObject.timestamp = order.date
-                                        dateObject.content += "购买《"+order.bookName+"》×"+order.count+"  花费"+Math.round(order.amount*100)/100+"元 \n"
+                                        dateObject.content += "购买《"+order.book_name+"》×"+order.count+"  花费"+Math.round(order.price*100)/100+"元 \n"
                                     }
                                 }
                                 accountList.push(dateObject)
