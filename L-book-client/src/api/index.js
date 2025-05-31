@@ -1,6 +1,6 @@
 import ajax from './ajax'
 
-const BASE_URL = 'http://192.168.7.158:1211/api'
+const BASE_URL = 'http://192.168.125.158:1211/api'
 
 // 1、登录
 export const reqLogin = ({account, password}) => ajax(BASE_URL+'/login', {account, password}, 'GET')
@@ -18,7 +18,7 @@ export const reqGetUserState = () => ajax(BASE_URL+'/user/states')
 export const reqGetAllBook = () => ajax(BASE_URL+'/getBooks')
 
 // 6、添加书籍
-export const reqAddBook = (book) => ajax(BASE_URL+'/book/add', {
+export const reqAddBook = (book) => ajax(BASE_URL+'/addbook', {
     name: book.name,
     author: book.author,
     isbn: book.isbn,
@@ -29,10 +29,10 @@ export const reqAddBook = (book) => ajax(BASE_URL+'/book/add', {
     press: book.press,
     year: book.year,
     pages: book.pages,
-}, 'POST')
+}, 'GET')
 
 // 7、修改书籍
-export const reqModifyBook = (book,newisbn,cover) => ajax(BASE_URL+'/book/modify', {
+export const reqModifyBook = (book,newisbn,cover) => ajax(BASE_URL+'/modify', {
     name: book.name,
     author: book.author,
     isbn: book.isbn,
@@ -44,7 +44,7 @@ export const reqModifyBook = (book,newisbn,cover) => ajax(BASE_URL+'/book/modify
     press: book.press,
     year: book.year,
     pages: book.pages,
-}, 'POST')
+}, 'GET')
 
 // 8、获得相应用户订单
 export const reqGetOrder = (account) => ajax(BASE_URL+'/order/get',{account}, 'POST')
@@ -62,10 +62,10 @@ export const reqSearchBook = (filter) => ajax(BASE_URL+'/book/search', {filter})
 export const reqDeleteImg = (filename) => ajax(BASE_URL+'/delete', {filename})
 
 // 13、获得书籍详情
-export const reqGetBookDetail = (ISBN) => ajax(BASE_URL+'/book/detail', {ISBN})
+export const reqGetBookDetail = (ISBN) => ajax(BASE_URL+'/detail', {ISBN})
 
 // 14、删除书籍
-export const reqDeleteBook = (ISBN) => ajax(BASE_URL+'/book/delete', {ISBN})
+export const reqDeleteBook = (ISBN) => ajax(BASE_URL+'/delete', {ISBN})
 
 // 15、判断用户最近是否登录
 export const reqInitLogin = () => ajax(BASE_URL+'/user/init')

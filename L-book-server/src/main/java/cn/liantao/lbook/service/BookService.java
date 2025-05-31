@@ -12,13 +12,13 @@ public interface BookService {
 //    List<Book> searchBooks(String text);
 //
 //    // 添加书籍
-//    void addBook(Book book);
+    void addBook(Book book);
 //
 //    // 查找书籍
     Book getBook(String ISBN);
 //
 //    // 删除书籍
-//    int deleteBook(String ISBN);
+    void deleteBook(String ISBN);
 //
 //    // 修改书籍
 //    int modifyBook(Book book);

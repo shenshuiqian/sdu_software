@@ -29,6 +29,45 @@ public class BookController {
         List<Book> books=bookService.getBooks();
         return books;
     }
+    @GetMapping(value = "/addbook")
+    @CrossOrigin
+    @ResponseBody
+    public void addBook(String name,String author,String isbn,String outline,
+                        float price,int stock,String cover,
+                        String press,String year,int pages){
+        Book book=new Book();
+        book.setName(name);
+        book.setAuthor(author);
+        book.setIsbn(isbn);
+        book.setOutline(outline);
+        book.setPrice(price);
+        book.setStock(stock);
+        book.setYear(year);
+        book.setPages(pages);
+        bookService.addBook(book);
+    }
 
-
+    @GetMapping(value = "/detail")
+    @CrossOrigin
+    @ResponseBody
+    public Book getDetailWithIsbn(String ISBN){
+        return bookService.getBook(ISBN);
+    }
+    @GetMapping(value = "/modify")
+    @CrossOrigin
+    @ResponseBody
+    public void bookModify(String name,String author,String isbn,String newisbn,
+                           String outline,float price,int stock,String cover,String press,String year,int pages){
+        bookService.deleteBook(isbn);
+        addBook(name,author,newisbn,outline, price,stock,cover,
+                press,year,pages);
+    }
+    @GetMapping(value = "/delete")
+    @CrossOrigin
+    @ResponseBody
+    public String bookdelete(String ISBN){
+        bookService.deleteBook(ISBN);
+        String response="删除成功";
+        return response;
+    }
 }
