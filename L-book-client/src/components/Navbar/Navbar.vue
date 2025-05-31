@@ -115,16 +115,14 @@
             } */
             logout () {
                 reqLogout().then((data) => {
-                    console.log('logout success:', data)
                     this.$store.commit('Person/changeLogin')
                     if (this.isManager) {
                          this.$store.commit('Person/changeManager')
                      }
                     this.$message.success(data)
                      return this.$router.push('/home')
-                }).catch((error) => {
-                    console.error('Logout error:', error)
-                    this.$message.error('退出登录失败')
+                }).catch(() => {
+                    // this.$message.error('退出登录失败')
                 })
             }
 
