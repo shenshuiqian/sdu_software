@@ -1,10 +1,10 @@
 package cn.liantao.lbook.controller;
 
-import cn.liantao.lbook.entity.Book;
-import cn.liantao.lbook.entity.SalesInvoice;
-import cn.liantao.lbook.entity.SalesInvoiceResponse;
+import cn.liantao.lbook.entity.*;
 import cn.liantao.lbook.service.BookService;
 import cn.liantao.lbook.service.SalesInvoiceService;
+import cn.liantao.lbook.service.UserService;
+import com.mysql.cj.x.protobuf.MysqlxCrud;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,6 +20,9 @@ public class SalesInvoiceController {
 
     @Autowired
     private BookService bookService;
+
+    @Autowired
+    private UserService userService;
     @GetMapping(value = "/order/getall")
     @CrossOrigin
     @ResponseBody
@@ -91,4 +94,29 @@ public class SalesInvoiceController {
 
         return salesInvoices;
     }
+
+    @GetMapping(value = "/order/add")
+    @CrossOrigin
+    @ResponseBody
+    public void addSalesInvoice(@RequestBody List<OrderRequest> orders) {
+        for(OrderRequest order : orders){
+            SalesInvoice invoice = new SalesInvoice();
+            invoice.setAccount(order.getAccount());
+            invoice.setISBN(order.getIsbn());
+            invoice.setCount(order.getCount());
+            invoice.setDate(new Timestamp(System.currentTimeMillis()));
+            Book book = bookService.getBook(order.getIsbn());
+            User user = userService.getUser(order.getAccount());
+            invoice.setUser_name(user.getUsername());
+            invoice.setBook_name(book.getName());
+            invoice.setAuthor(book.getAuthor());
+            invoice.setPrice(book.getPrice());
+            invoice.setIs_purchase(true);
+            book.setStock(book.getStock()-order.getCount());
+            salesInvoiceService.insertSalesInvoice(invoice);
+            bookService.deleteBook(order.getIsbn());
+            bookService.addBook(book);
+        }
+    }
+
 }

@@ -15,4 +15,8 @@
         FROM salesInvoice
         WHERE date BETWEEN #{time1} AND #{time2}
     </select>
+    <select id="insertSalesInvoice" parameterType="cn.liantao.lbook.entity.SalesInvoice">
+        INSERT INTO salesInvoice(account, user_name, book_name, author, ISBN, price, count,is_purchase,date)
+        VALUES(#{account}, #{user_name}, #{book_name}, #{author}, #{ISBN}, #{price}, #{count},#{is_purchase},#{date})
+    </select>
 </mapper>
