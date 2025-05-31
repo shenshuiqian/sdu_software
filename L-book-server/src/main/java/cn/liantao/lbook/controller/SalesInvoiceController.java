@@ -95,11 +95,12 @@ public class SalesInvoiceController {
         return salesInvoices;
     }
 
-    @GetMapping(value = "/order/add")
+    @PostMapping(value = "/order/add")
     @CrossOrigin
     @ResponseBody
-    public void addSalesInvoice(@RequestBody List<OrderRequest> orders) {
-        for(OrderRequest order : orders){
+    public void addSalesInvoice(@RequestBody OrderRequestWrapper orders) {
+        List<OrderRequest> orders2 = orders.getOrders();
+        for(OrderRequest order : orders2){
             SalesInvoice invoice = new SalesInvoice();
             invoice.setAccount(order.getAccount());
             invoice.setISBN(order.getIsbn());
