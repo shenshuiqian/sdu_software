@@ -7,7 +7,7 @@
         WHERE account = #{account}
     </select>
     <select id="addUser">
-        INSERT INTO user (account,password,username,isManager,mail,money)
-        VALUES (#{account},#{password},#{username},#{isManager},#{mail},#{money});
+        INSERT INTO user (account,password,username,isManager,mail,money,allowed)
+        VALUES (#{account},#{password},#{username},#{isManager},#{mail},#{money},#{allowed});
     </select>
 </mapper>

@@ -70,4 +70,11 @@ public class BookController {
         String response="删除成功";
         return response;
     }
+    @GetMapping(value = "/searchbooks")
+    @CrossOrigin
+    @ResponseBody
+    public List<Book> searchbooks(String filter){
+        filter="%"+filter+"%";
+        return bookService.searchBooks(filter);
+    }
 }
