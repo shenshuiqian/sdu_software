@@ -83,6 +83,15 @@
                 </el-badge>
             </div>
         </transition>
+        <transition name="fade">
+            <div v-if="showPaymentCode" class="payment-code-overlay">
+                <div class="payment-code-container">
+                    <img src="..\..\..\public\二维码.png" alt="付款码" class="payment-code-img" />
+                    <button class="btn btn-secondary mt-3" @click="showPaymentCode = false">我已付款</button>
+                </div>
+            </div>
+        </transition>
+
     </div>
 </template>
 
@@ -95,6 +104,7 @@
         data () {
             return {
                 showShopCart: false,
+                showPaymentCode: false
             }
         },
         computed: {
@@ -160,7 +170,8 @@
 
                     reqAddOrder(order).then(() => {
                         this.$store.commit('ShopCart/clearShopCart')
-                        this.$message.success("成功提交订单!感谢您的购物~")
+                        this.$message.success("成功提交订单!")
+                        this.showPaymentCode = true
                         this.$store.dispatch('Books/getAllBook')
                     })
 
@@ -286,4 +297,30 @@
         font-size: 22px;
         font-family: tohoma,arial;
     }
+    .payment-code-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color:rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .payment-code-container {
+        background-color: white;
+        padding: 20px;
+        border-radius: 12px;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .payment-code-img {
+        max-width: 200px;
+        max-height: 200px;
+    }
+
 </style>

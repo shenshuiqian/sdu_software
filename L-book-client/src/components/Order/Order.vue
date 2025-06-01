@@ -60,7 +60,7 @@
                 let urls = []
                 for (let book of this.order) {
                     if (Object.keys(book).length != 0 && book.cover != null) {
-                        let url = "/api/images/"+book.cover
+                        let url = "http://192.168.43.197:1211/api/images/"+book.cover
                         urls.push(url)
                         continue
                     }

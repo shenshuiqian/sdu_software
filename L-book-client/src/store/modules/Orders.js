@@ -15,17 +15,19 @@ const actions = {
     getOrder({commit}, account) {
         reqGetOrder(account).then((data) => {
             const orders = []
-            for (let items of data) {
+            console.log(data)
+            for (let items of data.orders) {
                 const order = []
                 for (let item of items) {
+                    //console.log(item.cover);
                     const book = {
                         author: item.author,
-                        name: item.bookName,
+                        name: item.book_name,
                         count: item.count,
                         price: item.price,
                         total: item.price*item.count,
                         cover: item.cover,
-                        userName: item.userName,
+                        userName: item.user_name,
                         date: item.date
                      }
                      order.push(book)
@@ -45,13 +47,14 @@ const actions = {
                 
                 for (let item of items) {
                     //console.log('订单信息，',items)
+                    //console.log(item.cover);
                     const book = {
                         author: item.author,
                         name: item.book_name,
                         count: item.count,
                         price: item.price,
                         total: item.price*item.count,
-                        
+                        cover: item.cover,
                         //isbn: item.isbn,
                         userName: item.user_name,
                         date: item.date

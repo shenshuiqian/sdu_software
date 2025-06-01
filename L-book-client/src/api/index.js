@@ -49,7 +49,7 @@ export const reqModifyBook = (book,newisbn,cover) => ajax(BASE_URL+'/modify', {
 }, 'GET')
 
 // 8、获得相应用户订单
-export const reqGetOrder = (account) => ajax(BASE_URL+'/order/get',{account}, 'POST')
+export const reqGetOrder = (account) => ajax(BASE_URL+'/order/get',{account})
 
 // 9、添加订单
 export const reqAddOrder = (orders) => ajax(BASE_URL+'/order/add', {orders}, 'POST')

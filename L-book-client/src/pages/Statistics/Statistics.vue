@@ -138,8 +138,8 @@
                                     
                                     this.chartData.rows.push({
                                         '日期': (date.getMonth()+1).toString()+"/"+date.getDate(),
-                                        '花费金额': order.amount,
-                                        '购买书目': order.count
+                                        '花费金额': order.totalAmount,
+                                        '购买书目': order.totalCount
                                     })
                                     break
                                 }
