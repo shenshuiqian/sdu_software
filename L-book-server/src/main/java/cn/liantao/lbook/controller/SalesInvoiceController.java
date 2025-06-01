@@ -64,6 +64,26 @@ public class SalesInvoiceController {
         return new SalesInvoiceResponse(wrapped);
     }
 
+    @GetMapping(value = "/order/get")
+    @CrossOrigin
+    @ResponseBody
+    public SalesInvoiceResponse getSalesInvoiceFromAccountInUser(String account) {
+        //List<SalesInvoice> salesInvoices=salesInvoiceService.getSalesInvoiceFromAccount(account);
+        //return salesInvoices;
+        List<SalesInvoice> salesInvoices = salesInvoiceService.getSalesInvoiceFromAccount(account);
+        List<List<Object>> wrapped = new ArrayList<>();
+
+        for (SalesInvoice invoice : salesInvoices) {
+            List<Object> inner = new ArrayList<>();
+            Book book=bookService.getBook(invoice.getISBN());
+            invoice.setCover(book.getCover());
+            inner.add(invoice);
+            wrapped.add(inner);
+        }
+
+        return new SalesInvoiceResponse(wrapped);
+    }
+
     @GetMapping(value = "/order/date")
     @CrossOrigin
     @ResponseBody
