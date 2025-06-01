@@ -29,6 +29,10 @@ public class SalesInvoiceServiceImpl implements SalesInvoiceService{
     public List<SalesInvoice> getSalesInvoiceBetweenTime(Timestamp time1, Timestamp time2){
         return saleMapper.getSalesInvoiceBetweenTime(time1,time2);
     }
+    @Override
+    public List<SalesInvoice> getSalesInvoiceBetweenTimeFromAccount(Timestamp time1,Timestamp time2,String account){
+        return saleMapper.getSalesInvoiceBetweenTimeFromAccount(time1,time2,account);
+    }
 
     @Override
     public void insertSalesInvoice(SalesInvoice invoice){

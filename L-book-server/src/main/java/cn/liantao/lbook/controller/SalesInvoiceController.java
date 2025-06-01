@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,12 +36,15 @@ public class SalesInvoiceController {
 
         for (SalesInvoice invoice : salesInvoices) {
             List<Object> inner = new ArrayList<>();
+            Book book=bookService.getBook(invoice.getISBN());
+            invoice.setCover(book.getCover());
             inner.add(invoice);
             wrapped.add(inner);
         }
 
         return new SalesInvoiceResponse(wrapped);
     }
+
     @GetMapping(value = "/order/search")
     @CrossOrigin
     @ResponseBody
@@ -52,6 +56,28 @@ public class SalesInvoiceController {
 
         for (SalesInvoice invoice : salesInvoices) {
             List<Object> inner = new ArrayList<>();
+            Book book=bookService.getBook(invoice.getISBN());
+            invoice.setCover(book.getCover());
+            inner.add(invoice);
+            wrapped.add(inner);
+        }
+
+        return new SalesInvoiceResponse(wrapped);
+    }
+
+    @GetMapping(value = "/order/get")
+    @CrossOrigin
+    @ResponseBody
+    public SalesInvoiceResponse getSalesInvoiceFromAccountInUser(String account) {
+        //List<SalesInvoice> salesInvoices=salesInvoiceService.getSalesInvoiceFromAccount(account);
+        //return salesInvoices;
+        List<SalesInvoice> salesInvoices = salesInvoiceService.getSalesInvoiceFromAccount(account);
+        List<List<Object>> wrapped = new ArrayList<>();
+
+        for (SalesInvoice invoice : salesInvoices) {
+            List<Object> inner = new ArrayList<>();
+            Book book=bookService.getBook(invoice.getISBN());
+            invoice.setCover(book.getCover());
             inner.add(invoice);
             wrapped.add(inner);
         }
@@ -62,7 +88,7 @@ public class SalesInvoiceController {
     @GetMapping(value = "/order/date")
     @CrossOrigin
     @ResponseBody
-    public List<SalesInvoice> getSalesInvoiceBetweenTime(
+    public List<DailySalesSummary> getSalesInvoiceBetweenTime(
             @RequestParam("beginDate") String time1Str,
             @RequestParam("endDate") String time2Str,
             @RequestParam("account") String account
@@ -71,10 +97,37 @@ public class SalesInvoiceController {
         time2Str += " 23:59:59";
         Timestamp ts1 = Timestamp.valueOf(time1Str);
         Timestamp ts2 = Timestamp.valueOf(time2Str);
+        User user=userService.getUser(account);
+        List<SalesInvoice> salesInvoices;
+        if(user.getIsManager())
+            salesInvoices = salesInvoiceService.getSalesInvoiceBetweenTime(ts1,ts2);
+        else
+            salesInvoices = salesInvoiceService.getSalesInvoiceBetweenTimeFromAccount(ts1,ts2,account);
+        //return salesInvoices;
 
-        List<SalesInvoice> salesInvoices = salesInvoiceService.getSalesInvoiceBetweenTime(ts1,ts2);
+        // 准备结果
+        List<DailySalesSummary> result = new ArrayList<>();
 
-        return salesInvoices;
+        // 日期范围迭代
+        LocalDate begin = ts1.toLocalDateTime().toLocalDate();
+        LocalDate end = ts2.toLocalDateTime().toLocalDate();
+
+        for (LocalDate date = begin; !date.isAfter(end); date = date.plusDays(1)) {
+            int totalCount = 0;
+            double totalAmount = 0.0;
+
+            for (SalesInvoice invoice : salesInvoices) {
+                LocalDate invoiceDate = invoice.getDate().toLocalDateTime().toLocalDate();
+                if (invoiceDate.equals(date)) {
+                    totalCount += invoice.getCount();
+                    totalAmount += invoice.getCount() * invoice.getPrice();
+                }
+            }
+
+            result.add(new DailySalesSummary(date.toString(), totalCount, totalAmount));
+        }
+
+        return result;
     }
 
     @GetMapping(value = "/order/dateDetail")
@@ -90,8 +143,12 @@ public class SalesInvoiceController {
         Timestamp ts1 = Timestamp.valueOf(time1Str);
         Timestamp ts2 = Timestamp.valueOf(time2Str);
 
-        List<SalesInvoice> salesInvoices = salesInvoiceService.getSalesInvoiceBetweenTime(ts1,ts2);
-
+        User user=userService.getUser(account);
+        List<SalesInvoice> salesInvoices;
+        if(user.getIsManager())
+            salesInvoices = salesInvoiceService.getSalesInvoiceBetweenTime(ts1,ts2);
+        else
+            salesInvoices = salesInvoiceService.getSalesInvoiceBetweenTimeFromAccount(ts1,ts2,account);
         return salesInvoices;
     }
 
