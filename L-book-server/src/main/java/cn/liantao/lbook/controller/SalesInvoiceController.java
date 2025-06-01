@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -87,7 +88,7 @@ public class SalesInvoiceController {
     @GetMapping(value = "/order/date")
     @CrossOrigin
     @ResponseBody
-    public List<SalesInvoice> getSalesInvoiceBetweenTime(
+    public List<DailySalesSummary> getSalesInvoiceBetweenTime(
             @RequestParam("beginDate") String time1Str,
             @RequestParam("endDate") String time2Str,
             @RequestParam("account") String account
@@ -102,7 +103,31 @@ public class SalesInvoiceController {
             salesInvoices = salesInvoiceService.getSalesInvoiceBetweenTime(ts1,ts2);
         else
             salesInvoices = salesInvoiceService.getSalesInvoiceBetweenTimeFromAccount(ts1,ts2,account);
-        return salesInvoices;
+        //return salesInvoices;
+
+        // 准备结果
+        List<DailySalesSummary> result = new ArrayList<>();
+
+        // 日期范围迭代
+        LocalDate begin = ts1.toLocalDateTime().toLocalDate();
+        LocalDate end = ts2.toLocalDateTime().toLocalDate();
+
+        for (LocalDate date = begin; !date.isAfter(end); date = date.plusDays(1)) {
+            int totalCount = 0;
+            double totalAmount = 0.0;
+
+            for (SalesInvoice invoice : salesInvoices) {
+                LocalDate invoiceDate = invoice.getDate().toLocalDateTime().toLocalDate();
+                if (invoiceDate.equals(date)) {
+                    totalCount += invoice.getCount();
+                    totalAmount += invoice.getCount() * invoice.getPrice();
+                }
+            }
+
+            result.add(new DailySalesSummary(date.toString(), totalCount, totalAmount));
+        }
+
+        return result;
     }
 
     @GetMapping(value = "/order/dateDetail")
