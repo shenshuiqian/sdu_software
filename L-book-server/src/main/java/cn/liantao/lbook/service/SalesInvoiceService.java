@@ -9,6 +9,6 @@ public interface SalesInvoiceService {
     List<SalesInvoice> getAllSalesInvoice();
     List<SalesInvoice> getSalesInvoiceFromAccount(String account);
     List<SalesInvoice> getSalesInvoiceBetweenTime(Timestamp time1,Timestamp time2);
-
+    List<SalesInvoice> getSalesInvoiceBetweenTimeFromAccount(Timestamp time1,Timestamp time2,String account);
     void insertSalesInvoice(SalesInvoice invoice);
 }

@@ -35,12 +35,15 @@ public class SalesInvoiceController {
 
         for (SalesInvoice invoice : salesInvoices) {
             List<Object> inner = new ArrayList<>();
+            Book book=bookService.getBook(invoice.getISBN());
+            invoice.setCover(book.getCover());
             inner.add(invoice);
             wrapped.add(inner);
         }
 
         return new SalesInvoiceResponse(wrapped);
     }
+
     @GetMapping(value = "/order/search")
     @CrossOrigin
     @ResponseBody
@@ -52,6 +55,8 @@ public class SalesInvoiceController {
 
         for (SalesInvoice invoice : salesInvoices) {
             List<Object> inner = new ArrayList<>();
+            Book book=bookService.getBook(invoice.getISBN());
+            invoice.setCover(book.getCover());
             inner.add(invoice);
             wrapped.add(inner);
         }
@@ -71,9 +76,12 @@ public class SalesInvoiceController {
         time2Str += " 23:59:59";
         Timestamp ts1 = Timestamp.valueOf(time1Str);
         Timestamp ts2 = Timestamp.valueOf(time2Str);
-
-        List<SalesInvoice> salesInvoices = salesInvoiceService.getSalesInvoiceBetweenTime(ts1,ts2);
-
+        User user=userService.getUser(account);
+        List<SalesInvoice> salesInvoices;
+        if(user.getIsManager())
+            salesInvoices = salesInvoiceService.getSalesInvoiceBetweenTime(ts1,ts2);
+        else
+            salesInvoices = salesInvoiceService.getSalesInvoiceBetweenTimeFromAccount(ts1,ts2,account);
         return salesInvoices;
     }
 
@@ -90,8 +98,12 @@ public class SalesInvoiceController {
         Timestamp ts1 = Timestamp.valueOf(time1Str);
         Timestamp ts2 = Timestamp.valueOf(time2Str);
 
-        List<SalesInvoice> salesInvoices = salesInvoiceService.getSalesInvoiceBetweenTime(ts1,ts2);
-
+        User user=userService.getUser(account);
+        List<SalesInvoice> salesInvoices;
+        if(user.getIsManager())
+            salesInvoices = salesInvoiceService.getSalesInvoiceBetweenTime(ts1,ts2);
+        else
+            salesInvoices = salesInvoiceService.getSalesInvoiceBetweenTimeFromAccount(ts1,ts2,account);
         return salesInvoices;
     }
 
