@@ -35,10 +35,25 @@
 - 搜索订单
 - 订单统计
 
+
 ## 快速开始
-clone以下：
-#### L-book-client
-#### L-book-server
+（1） 下载项目
+'''
+git clone 
+'''
+(2)  配置application-dev.yml中的端口号
+'''
+server:
+  port: 1211
+  address: 0.0.0.0
+
+spring:
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:3306/sdu_book?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+'''
 client: 运行：`npm install`,`npm run serve`
 server: 运行sql后脏的lbook.sql脚本,run项目即可。
 
