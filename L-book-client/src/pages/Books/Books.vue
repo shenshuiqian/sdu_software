@@ -153,6 +153,7 @@
         },
         computed: {
             ...mapState({
+                isLogin: state => state.Person.isLogin,
                 isManager: state => state.Person.isManager,
                 books: state => state.Books.books
             })

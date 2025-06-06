@@ -1,12 +1,18 @@
 <template>
     <div>
         <nav class="navbar navbar-light border-bottom mt-1" :class="{ 'bg-dark':isManager}">
-            <a class="navbar-brand" href="#">
+           <!--  <a class="navbar-brand" href="#">
                 <div class="row" :class="{ 'text-white':isManager}">
                    <i class="iconfont icon-shuji mt-1 mr-2 ml-2"></i>
                     SDU-book在线书店
                 </div>
-            </a>
+            </a> -->
+            <router-link to="/home" class="navbar-brand">
+                <div class="row" :class="{ 'text-white': isManager }">
+                    <i class="iconfont icon-shuji mt-1 mr-2 ml-2"></i>
+                SDU-book在线书店
+                 </div>
+            </router-link>
             <ul class="nav nav-fill nav-pills" v-show="$route.meta.showNavDetail">
                 <li class="nav-item">
                     <a class="nav-link" :class="($route.path==='/home')? 'active' : 'text-muted'" href="#/home" v-if="!isManager">

@@ -2,7 +2,7 @@ import ajax from './ajax'
 
 
 
-const BASE_URL = 'http://192.168.43.197:1211/api'
+const BASE_URL = 'http://192.168.125.158:1211/api'
 
 // 1、登录
 export const reqLogin = ({account, password}) => ajax(BASE_URL+'/login', {account, password}, 'GET')
