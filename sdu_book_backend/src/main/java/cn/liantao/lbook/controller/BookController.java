@@ -114,8 +114,9 @@ public class BookController {
         String uploadDir = processPath(System.getProperty("user.dir"));
 
         uploadDir+="src/main/java/cn/liantao/lbook/images/";
-
+        //uploadDir="E:/work/大三下/软件工程/sud/sdu_software/sdu_book_backend/src/main/java/cn/liantao/lbook/images";
         // 创建文件夹（如果不存在）
+        System.out.println(uploadDir);
         File dir = new File(uploadDir);
         if (!dir.exists()) {
             dir.mkdirs();
@@ -127,7 +128,8 @@ public class BookController {
         try {
             // 保存文件到目标路径
             file.transferTo(dest);
-            return "上传成功，文件路径为：" + dest.getAbsolutePath();
+            return fileName;
+            //return "上传成功，文件路径为：" + dest.getAbsolutePath();
         } catch (IOException e) {
             e.printStackTrace();
             return "文件保存失败：" + e.getMessage();
