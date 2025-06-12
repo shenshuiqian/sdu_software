@@ -65,11 +65,11 @@ cover: function () {
 
 
 ### 技术栈：
-#####（1）后端使用了Maven 、SpringBoot 、MyBatis 等技术栈
+（1）后端使用了Maven 、SpringBoot 、MyBatis 等技术栈
 
-#####（2）前端使用了Vue3、ElementUI、BootStrap、Axios、vuex 、vue-cli等技术栈
+（2）前端使用了Vue3、ElementUI、BootStrap、Axios、vuex 、vue-cli等技术栈
 
-#####（3）数据库使用MySQL以及MyBatis
+（3）数据库使用MySQL以及MyBatis
 
 ## 功能
 

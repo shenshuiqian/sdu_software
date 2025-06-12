@@ -335,7 +335,7 @@
             }),
             cover: function () {
                 if (Object.keys(this.book).length != 0 && this.book.cover != null) {
-                    let cover = "http://192.168.43.197:1211/api/images/"+ this.book.cover
+                    let cover = "http://192.168.125.158:1211/api/images/"+ this.book.cover
                     return cover
                 }
 
