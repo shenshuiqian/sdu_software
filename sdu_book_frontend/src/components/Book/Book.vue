@@ -234,7 +234,9 @@
             },
 
             book_modify () {
-                reqModifyBook(this.detail,this.newisbn,this.cover_return).then( () => {
+                 const coverToUse = this.cover_return != null ? this.cover_return : this.book.cover;
+                reqModifyBook(this.detail,this.newisbn,coverToUse).then( () => {
+                    
                     this.$store.dispatch('Books/getAllBook')
                     this.form.isbn = this.newisbn
                     this.$message.success("成功修改书籍信息")
@@ -289,8 +291,9 @@
                 let file = data.file
                 let url = '/api/upload'
                 let formData = new FormData()
+                
                 formData.append("file",file)
-
+                this.form.cover = file.name
                 axios({
                     method: 'POST',
                     url: url,
